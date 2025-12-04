@@ -385,31 +385,6 @@ hatch run fmt && hatch run lint && hatch run typing
 
 ## Project Structure
 
-```
-ogc-app-package-patterns-tester/
-├── src/ogc_patterns_tester/        # Main package
-│   ├── __init__.py                 # Package exports
-│   ├── cli.py                      # Command line interface with Click
-│   ├── client.py                   # OGC API client wrapper
-│   ├── patterns_manager.py         # Pattern execution orchestration
-│   ├── models.py                   # Data models (Pydantic/dataclasses)
-│   └── utils.py                    # Utilities (logging, downloads)
-├── data/patterns/                  # Pattern configurations (JSON)
-│   ├── pattern-1.json              # Parameters for pattern-1
-│   ├── pattern-2.json              # Parameters for pattern-2
-│   └── ...                         # Patterns 3-12
-├── tests/                          # Test suite
-│   ├── test_client.py              # Client tests
-│   ├── test_patterns_manager.py    # Manager tests
-│   ├── test_models.py              # Model tests
-│   ├── test_integration.py         # Integration tests
-│   └── conftest.py                 # Test fixtures
-├── temp/cwl/                       # CWL files cache (auto-generated)
-├── pyproject.toml                  # Project config (Hatch/dependencies)
-├── README.md                       # This file
-└── README_HATCH.md                 # Hatch-specific documentation
-```
-
 ### Key Components
 
 - **`cli.py`**: Click-based CLI with clean KeyboardInterrupt handling
