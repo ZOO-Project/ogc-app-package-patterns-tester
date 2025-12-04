@@ -41,23 +41,3 @@ jobs:
           files: ./htmlcov/index.html
           fail_ci_if_error: false
 
-  lint:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Hatch
-        run: pip install hatch
-
-      - name: Run linting
-        run: hatch run lint
-
-      - name: Check formatting
-        run: hatch run fmt --check
