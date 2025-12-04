@@ -1,0 +1,32 @@
+{
+  "aoi": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#BBox",
+    "bbox": [
+      -118.985,
+      38.432,
+      -118.183,
+      38.938
+    ],
+    "crs": "CRS84"
+  },
+  "item": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#URI",
+    "value": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_042033_20231007_02_T1"
+  },
+  "bands": [
+    "green",
+    "nir08"
+  ],
+  "cropped-collection": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#URI",
+    "value": "https://github.com/eoap/application-package-patterns/raw/refs/heads/develop/collections/cropped_collection.json"
+  },
+  "ndwi-collection": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#URI",
+    "value": "https://github.com/eoap/application-package-patterns/raw/refs/heads/develop/collections/ndi_collection.json"
+  },
+  "water-bodies-collection": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#URI",
+    "value": "https://github.com/eoap/application-package-patterns/raw/refs/heads/develop/collections/water_bodies_collection.json"
+  }
+}

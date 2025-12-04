@@ -1,0 +1,16 @@
+{
+  "aoi": "-118.985,38.432,-118.183,38.938",
+  "epsg": "EPSG:4326",
+  "bands": [
+    "green",
+    "nir08"
+  ],
+  "item": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/url.yaml#URL",
+    "value": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC08_L2SP_042033_20231007_02_T1"
+  },
+  "dem": {
+    "class": "https://raw.githubusercontent.com/eoap/schemas/main/url.yaml#URL",
+    "value": "https://elevationeuwest.blob.core.windows.net/copernicus-dem/COP30_hh/Copernicus_DSM_COG_10_N38_00_W119_00_DEM.tif"
+  }
+}

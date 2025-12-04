@@ -1,0 +1,6 @@
+{
+  "base_url": "http://localhost:5000",
+  "auth_token": null,
+  "timeout": 300,
+  "description": "Configuration par défaut pour un serveur OGC API Processes local"
+}

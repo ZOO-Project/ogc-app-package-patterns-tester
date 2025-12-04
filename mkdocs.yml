@@ -1,0 +1,35 @@
+site_name: OGC Application Package Patterns Tester
+site_description: Python tool for testing OGC API Processes application package patterns
+site_author: EOEPCA Team
+repo_url: https://github.com/ZOO-Project/ogc-app-package-patterns-tester
+repo_name: ZOO-Project/ogc-app-package-patterns-tester
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API Reference: api.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
