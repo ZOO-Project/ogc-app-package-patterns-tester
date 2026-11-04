@@ -28,15 +28,15 @@ import click
 
 # Import ogc-api-client components
 import yaml
-from ogc_api_client.api.capabilities_api import CapabilitiesApi
-from ogc_api_client.api.execute_api import ExecuteApi
-from ogc_api_client.api.process_description_api import ProcessDescriptionApi
-from ogc_api_client.api.process_list_api import ProcessListApi
-from ogc_api_client.api.result_api import ResultApi
-from ogc_api_client.api.status_api import StatusApi
-from ogc_api_client.api_client import ApiClient
-from ogc_api_client.configuration import Configuration
-from ogc_api_client.rest import ApiException
+from ogc_api_processes_client.api.capabilities_api import CapabilitiesApi
+from ogc_api_processes_client.api.execute_api import ExecuteApi
+from ogc_api_processes_client.api.process_description_api import ProcessDescriptionApi
+from ogc_api_processes_client.api.process_list_api import ProcessListApi
+from ogc_api_processes_client.api.result_api import ResultApi
+from ogc_api_processes_client.api.status_api import StatusApi
+from ogc_api_processes_client.api_client import ApiClient
+from ogc_api_processes_client.configuration import Configuration
+from ogc_api_processes_client.rest import ApiException
 
 from .models import JobInfo, JobStatus, ProcessInfo
 from .utils import setup_logger

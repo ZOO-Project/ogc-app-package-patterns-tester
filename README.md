@@ -105,6 +105,37 @@ ogc-patterns-tester list-patterns
 
 **Note**: CWL workflows are automatically downloaded from the [eoap/application-package-patterns](https://github.com/eoap/application-package-patterns) repository on first use. Files are cached in `temp/cwl/` directory. Use `--force-download` to refresh cached files.
 
+#### Select a repository version
+
+Use the global `--patterns-ref` option **before the subcommand** to choose a
+Git tag, branch or commit of `eoap/application-package-patterns` (default: `main`).
+For a GitHub release, use its associated **tag name**, not its release title.
+Find the available tags at https://github.com/eoap/application-package-patterns/tags.
+
+```bash
+# Replace YOUR_TAG with an existing tag.
+hatch run ogc-patterns-tester \
+  --server-url http://localhost:8080/ogc-api/ \
+  --patterns-ref YOUR_TAG run pattern-1
+
+# Download without deploying or executing anything on the server.
+hatch run ogc-patterns-tester --patterns-ref YOUR_TAG download pattern-1
+
+# Synchronize input parameters from the same version's notebooks.
+hatch run ogc-patterns-tester --patterns-ref YOUR_TAG sync-params pattern-1
+```
+
+Non-default references use separate hashed subdirectories under `temp/cwl/`
+(or `--download-dir`), so switching tags cannot reuse another reference's CWL.
+The existing cache location for `main` is unchanged. Use `--force-download`
+to refresh a moving branch. Use a commit SHA for reproducibility.
+
+The option selects the source CWL and notebook versions; it does not rewrite
+container image tags or remote references inside CWL. Local parameter JSON
+files remain in `--patterns-dir` and are not changed by `run`. Run `sync-params`
+explicitly when they need to match the selected version; this overwrites the
+corresponding parameter files.
+
 #### Server Configuration and Authentication
 
 ```bash

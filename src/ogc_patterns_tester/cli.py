@@ -105,6 +105,12 @@ def load_server_config(config_file: Optional[str] = None) -> ServerConfig:
     default=False,
 )
 @click.option("--verbose", "-v", help="Verbose mode", is_flag=True, default=False)
+@click.option(
+    "--patterns-ref",
+    default="main",
+    show_default=True,
+    help="Git tag, branch or commit of eoap/application-package-patterns.",
+)
 @click.pass_context
 def cli(
     ctx,
@@ -115,6 +121,7 @@ def cli(
     download_dir: str,
     force_download: bool,
     verbose: bool,
+    patterns_ref: str,
 ):
     """
     Pattern tester for OGC API Processes.
@@ -145,6 +152,7 @@ def cli(
         download_dir=download_dir,
         force_download=force_download,
         cleanup_handler=cleanup_handler,
+        patterns_ref=patterns_ref,
     )
 
     # Register manager in cleanup handler
@@ -674,7 +682,7 @@ def sync_params(ctx, pattern_ids, output_dir, sync_all, continue_on_error):
     click.echo(f"Output directory: {output_path}\n")
 
     # Create parser and sync
-    parser = NotebookParser()
+    parser = NotebookParser(patterns_ref=ctx.obj["manager"].patterns_ref)
     results = parser.sync_all_patterns(
         patterns_to_sync, output_path, continue_on_error=continue_on_error
     )

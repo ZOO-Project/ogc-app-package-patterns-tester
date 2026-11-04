@@ -10,6 +10,15 @@ import pytest
 from ogc_patterns_tester.notebook_parser import NotebookParser
 
 
+@pytest.mark.parametrize("ref", ["v1.0.0", "release/test", "abc123"])
+def test_notebook_reference(ref):
+    parser = NotebookParser(patterns_ref=ref)
+    assert parser.get_notebook_url("pattern-1") == (
+        "https://raw.githubusercontent.com/eoap/application-package-patterns/"
+        f"{ref.replace('/', '%2F')}/docs/pattern-1.ipynb"
+    )
+
+
 class TestNotebookParser:
     """Test cases for NotebookParser class."""
 

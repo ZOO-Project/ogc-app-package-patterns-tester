@@ -32,7 +32,7 @@ dependencies = [
     "pydantic>=1.10.0",
     "python-dateutil>=2.8.0",
     "urllib3>=1.26.0",
-    "ogc-api-client @ git+https://github.com/EOEPCA/ogc-api-client.git#subdirectory=src",
+    "ogc-api-processes-client @ git+https://github.com/EOEPCA/ogc-api-processes-client.git",
 ]
 
 [project.optional-dependencies]

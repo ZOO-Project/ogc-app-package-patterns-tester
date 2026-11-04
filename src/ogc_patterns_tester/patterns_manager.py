@@ -18,10 +18,12 @@ This module contains the PatternsManager class that coordinates the deployment,
 execution and monitoring of CWL workflows on an OGC API Processes server.
 """
 
+import hashlib
 import json
 import time
 from pathlib import Path
 from typing import Dict, List, Optional, Set
+from urllib.parse import quote
 
 import click
 
@@ -47,6 +49,7 @@ class PatternsManager:
         download_dir: str = "temp/cwl",
         force_download: bool = False,
         cleanup_handler=None,
+        patterns_ref: str = "main",
     ):
         """
         Initialize the patterns manager.
@@ -57,10 +60,21 @@ class PatternsManager:
             download_dir: Temporary directory for CWL files
             force_download: Force re-download of CWL files even if they exist
             cleanup_handler: Optional cleanup handler for signal handling
+            patterns_ref: Git tag, branch or commit of application-package-patterns
         """
         self.server_config = server_config
         self.patterns_dir = Path(patterns_dir)
+        if not patterns_ref or patterns_ref.strip() != patterns_ref:
+            raise ValueError(
+                "patterns_ref must be a non-empty Git reference "
+                "without surrounding whitespace"
+            )
+        self.patterns_ref = patterns_ref
         self.download_dir = Path(download_dir)
+        if patterns_ref != "main":
+            self.download_dir /= hashlib.sha256(
+                patterns_ref.encode("utf-8")
+            ).hexdigest()
         self.force_download = force_download
         self.cleanup_handler = cleanup_handler
         self.client = OGCApiClient(
@@ -104,7 +118,7 @@ class PatternsManager:
             # Build CWL workflow URL
             cwl_url = (
                 f"https://raw.githubusercontent.com/eoap/application-package-patterns/"
-                f"main/cwl-workflow/{pattern_id}.cwl"
+                f"{quote(self.patterns_ref, safe='')}/cwl-workflow/{pattern_id}.cwl"
             )
 
             return PatternConfig(

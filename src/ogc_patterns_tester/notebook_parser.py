@@ -23,6 +23,7 @@ import re
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from urllib.parse import quote
 
 from .utils import setup_logger
 
@@ -35,8 +36,14 @@ class NotebookParser:
     GITHUB_BRANCH = "main"
     DOCS_PATH = "docs"
 
-    def __init__(self):
+    def __init__(self, patterns_ref: str = GITHUB_BRANCH):
         """Initialize the notebook parser."""
+        if not patterns_ref or patterns_ref.strip() != patterns_ref:
+            raise ValueError(
+                "patterns_ref must be a non-empty Git reference "
+                "without surrounding whitespace"
+            )
+        self.patterns_ref = patterns_ref
         self.logger = setup_logger(__name__)
 
     def get_notebook_url(self, pattern_id: str) -> str:
@@ -52,7 +59,7 @@ class NotebookParser:
         notebook_name = f"{pattern_id}.ipynb"
         return (
             f"https://raw.githubusercontent.com/{self.GITHUB_REPO}/"
-            f"{self.GITHUB_BRANCH}/{self.DOCS_PATH}/{notebook_name}"
+            f"{quote(self.patterns_ref, safe='')}/{self.DOCS_PATH}/{notebook_name}"
         )
 
     def download_notebook(self, pattern_id: str) -> Optional[Dict[str, Any]]:

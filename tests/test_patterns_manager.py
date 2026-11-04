@@ -3,7 +3,78 @@
 import json
 from unittest.mock import Mock, patch
 
+import pytest
+from click.testing import CliRunner
+
+from ogc_patterns_tester.cli import cli
 from ogc_patterns_tester.patterns_manager import PatternsManager
+
+
+@pytest.mark.parametrize("ref", ["v1.0.0", "release/test", "abc123"])
+def test_repository_reference(server_config, tmp_path, ref):
+    patterns = tmp_path / "patterns"
+    patterns.mkdir()
+    (patterns / "pattern-1.json").write_text("{}")
+    cache = tmp_path / "cwl"
+    default = PatternsManager(server_config, str(patterns), str(cache))
+    (cache / "pattern-1.cwl").write_text("cached main")
+    manager = PatternsManager(
+        server_config, str(patterns), str(cache), patterns_ref=ref
+    )
+    config = manager.load_pattern_config("pattern-1")
+    assert config is not None
+    assert f"/{ref.replace('/', '%2F')}/cwl-workflow/" in config.cwl_url
+    assert default.download_dir == cache
+    assert manager.download_dir != cache
+    assert manager.download_dir.parent == cache
+    with patch(
+        "ogc_patterns_tester.patterns_manager.download_cwl_file",
+        return_value=True,
+    ) as download:
+        assert manager.prepare_pattern("pattern-1")
+        download.assert_called_once_with(
+            config.cwl_url, str(manager.download_dir / "pattern-1.cwl")
+        )
+    other = PatternsManager(
+        server_config, str(patterns), str(cache), patterns_ref="other"
+    )
+    assert other.download_dir != manager.download_dir
+    with patch.object(manager, "prepare_pattern", return_value=True), patch.object(
+        manager.client, "deploy_process"
+    ) as deploy:
+        assert manager.deploy_pattern("pattern-1")
+        deploy.assert_called_once_with(
+            "pattern-1", str(manager.download_dir / "pattern-1.cwl")
+        )
+
+
+def test_cli_reference():
+    with patch("ogc_patterns_tester.cli.PatternsManager") as manager:
+        result = CliRunner().invoke(
+            cli, ["--patterns-ref", "v1.0.0", "download", "pattern-1"]
+        )
+        assert result.exit_code == 0, result.output
+        assert manager.call_args.kwargs["patterns_ref"] == "v1.0.0"
+
+
+def test_sync_params_reference(tmp_path):
+    with patch("ogc_patterns_tester.cli.PatternsManager") as manager, patch(
+        "ogc_patterns_tester.notebook_parser.NotebookParser"
+    ) as parser:
+        manager.return_value.patterns_ref = "v1.0.0"
+        result = CliRunner().invoke(
+            cli,
+            [
+                "--patterns-ref",
+                "v1.0.0",
+                "sync-params",
+                "pattern-1",
+                "--output-dir",
+                str(tmp_path),
+            ],
+        )
+        assert result.exit_code == 0, result.output
+        parser.assert_called_once_with(patterns_ref="v1.0.0")
 
 
 class TestPatternsManager:
