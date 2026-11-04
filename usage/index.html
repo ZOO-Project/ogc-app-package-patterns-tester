@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -656,13 +656,13 @@ hatch<span class="w"> </span>run<span class="w"> </span>ogc-patterns-tester<span
 <span class="c1"># Run with authentication (Bearer token)</span>
 hatch<span class="w"> </span>run<span class="w"> </span>ogc-patterns-tester<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--server-url<span class="w"> </span>https://your-server.com/ogc-api/<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">&quot;eyJhbGci...&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">"eyJhbGci..."</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>run<span class="w"> </span>pattern-1
 
 <span class="c1"># Run all patterns</span>
 hatch<span class="w"> </span>run<span class="w"> </span>ogc-patterns-tester<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--server-url<span class="w"> </span>https://your-server.com/ogc-api/<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">&quot;your-token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">"your-token"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>run-all<span class="w"> </span>--timeout<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <h2 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">&para;</a></h2>
@@ -684,7 +684,7 @@ ogc-patterns-tester<span class="w"> </span>run-all
 <div class="highlight"><pre><span></span><code><span class="c1"># Bearer token (JWT - recommended)</span>
 ogc-patterns-tester<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--server-url<span class="w"> </span>https://your-server.com/ogc-api/<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">&quot;eyJhbGci...&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--auth-token<span class="w"> </span><span class="s2">"eyJhbGci..."</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>run<span class="w"> </span>pattern-1
 </code></pre></div>
 <p><strong>Authentication Methods:</strong></p>
@@ -712,51 +712,51 @@ ogc-patterns-tester<span class="w"> </span>--force-download<span class="w"> </sp
 
 <span class="c1"># Server configuration</span>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ServerConfig</span><span class="p">(</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://your-server.com/ogc-api/&quot;</span><span class="p">,</span>
-    <span class="n">auth_token</span><span class="o">=</span><span class="s2">&quot;eyJhbGci...&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://your-server.com/ogc-api/"</span><span class="p">,</span>
+    <span class="n">auth_token</span><span class="o">=</span><span class="s2">"eyJhbGci..."</span><span class="p">,</span>
     <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span>
 <span class="p">)</span>
 
 <span class="c1"># Create manager</span>
 <span class="n">manager</span> <span class="o">=</span> <span class="n">PatternsManager</span><span class="p">(</span>
     <span class="n">server_config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
-    <span class="n">patterns_dir</span><span class="o">=</span><span class="s2">&quot;data/patterns&quot;</span><span class="p">,</span>
-    <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;temp/cwl&quot;</span>
+    <span class="n">patterns_dir</span><span class="o">=</span><span class="s2">"data/patterns"</span><span class="p">,</span>
+    <span class="n">download_dir</span><span class="o">=</span><span class="s2">"temp/cwl"</span>
 <span class="p">)</span>
 
 <span class="c1"># Execute pattern</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">run_single_pattern</span><span class="p">(</span><span class="s2">&quot;pattern-1&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">run_single_pattern</span><span class="p">(</span><span class="s2">"pattern-1"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ Success in </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">execution_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✓ Success in </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">execution_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✗ Failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="advanced-example">Advanced Example<a class="headerlink" href="#advanced-example" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">ogc_patterns_tester</span><span class="w"> </span><span class="kn">import</span> <span class="n">PatternsManager</span><span class="p">,</span> <span class="n">ServerConfig</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">ServerConfig</span><span class="p">(</span>
-    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://your-server.com/ogc-api/&quot;</span><span class="p">,</span>
-    <span class="n">auth_token</span><span class="o">=</span><span class="s2">&quot;your-bearer-token&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">"https://your-server.com/ogc-api/"</span><span class="p">,</span>
+    <span class="n">auth_token</span><span class="o">=</span><span class="s2">"your-bearer-token"</span><span class="p">,</span>
     <span class="n">timeout</span><span class="o">=</span><span class="mi">600</span>
 <span class="p">)</span>
 
 <span class="n">manager</span> <span class="o">=</span> <span class="n">PatternsManager</span><span class="p">(</span>
     <span class="n">server_config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
-    <span class="n">patterns_dir</span><span class="o">=</span><span class="s2">&quot;data/patterns&quot;</span><span class="p">,</span>
-    <span class="n">download_dir</span><span class="o">=</span><span class="s2">&quot;temp/cwl&quot;</span><span class="p">,</span>
+    <span class="n">patterns_dir</span><span class="o">=</span><span class="s2">"data/patterns"</span><span class="p">,</span>
+    <span class="n">download_dir</span><span class="o">=</span><span class="s2">"temp/cwl"</span><span class="p">,</span>
     <span class="n">force_download</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="c1"># Execute multiple patterns</span>
-<span class="n">pattern_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pattern-1&quot;</span><span class="p">,</span> <span class="s2">&quot;pattern-2&quot;</span><span class="p">,</span> <span class="s2">&quot;pattern-3&quot;</span><span class="p">]</span>
+<span class="n">pattern_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pattern-1"</span><span class="p">,</span> <span class="s2">"pattern-2"</span><span class="p">,</span> <span class="s2">"pattern-3"</span><span class="p">]</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">run_multiple_patterns</span><span class="p">(</span>
     <span class="n">pattern_ids</span><span class="p">,</span>
     <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">continue_on_error</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results: </span><span class="si">{</span><span class="n">summary</span><span class="o">.</span><span class="n">successful_patterns</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">summary</span><span class="o">.</span><span class="n">total_patterns</span><span class="si">}</span><span class="s2"> successful&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Results: </span><span class="si">{</span><span class="n">summary</span><span class="o">.</span><span class="n">successful_patterns</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">summary</span><span class="o">.</span><span class="n">total_patterns</span><span class="si">}</span><span class="s2"> successful"</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="supported-patterns">Supported Patterns<a class="headerlink" href="#supported-patterns" title="Permanent link">&para;</a></h2>
 <table>
@@ -892,10 +892,10 @@ ogc-patterns-tester<span class="w"> </span>--force-download<span class="w"> </sp
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
